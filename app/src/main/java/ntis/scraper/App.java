@@ -15,11 +15,13 @@ public class App {
 
     public static void main(String[] args) {
         List<Post> posts = Scraper.scrape(FileUtils.getDate());
-        System.out.println("게시글 개수: " + posts.size() + "개");
-
-        if (!posts.isEmpty()) {
-            FileUtils.updateDate(posts.get(0).date());
+        if (posts.isEmpty()) {
+            System.out.println("새로운 게시글이 없습니다.");
+            return;
         }
+
+        System.out.println("게시글 개수: " + posts.size() + "개");
+        FileUtils.updateDate(posts.get(0).date());
 
         Set<Integer> codeSet = PostUtils.getCodeSet(posts);
         System.out.println("전체 코드 세트: " + codeSet + "(" + codeSet.size() + "개)");
