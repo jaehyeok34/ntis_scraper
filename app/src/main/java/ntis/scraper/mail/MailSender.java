@@ -48,12 +48,12 @@ public class MailSender {
                     try {
                         MimeMessage message = MessageBuilder.build(id, password, batch, posts);
                         if (message == null) {
-                            System.err.println("? 메일 작성 실패(배치 시작: " + start + ")");
+                            // System.err.println("? 메일 작성 실패(배치 시작: " + start + ")");
                             return; 
                         }
 
                         Transport.send(message);
-                        System.out.println("! 그룹 메일 전송 성공: 배치 시작 " + start + ", 주소" + batch.length + "개");
+                        // System.out.println("! 그룹 메일 전송 성공: 배치 시작 " + start + ", 주소" + batch.length + "개");
                     } catch (Exception e) {
                         System.err.println("? 메일 전송 실패(배치 시작: " + start + "): " + e.getMessage());
                     }
