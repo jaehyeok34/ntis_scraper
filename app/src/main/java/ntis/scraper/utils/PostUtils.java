@@ -9,7 +9,7 @@ import ntis.scraper.Post;
 public class PostUtils {
 
     /**
-     * 주어진 게시글 목록의 코드 집합 반환(중복 X)
+     * 주어진 게시글 목록의 중복된 값을 제거한 코드 집합 반환
      */
     public static Set<Integer> getCodeSet(List<Post> posts) {
         return posts.stream()

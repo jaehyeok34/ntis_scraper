@@ -19,6 +19,10 @@ public class FileUtils {
     private static final Path ENV_FILE = RESOURCES_DIR.resolve(".env");
     private static final Path LOGO_FILE = RESOURCES_DIR.resolve("logo.png");
     
+    /**
+     * 단일 라인으로 구성된 date.txt 파일에서 마지막 스크래핑 날짜를 읽어 옴
+     * 예: 2026-01-01
+     */
     public static String getDate() {
         try {
             return Files.readString(DATE_FILE);
@@ -29,6 +33,10 @@ public class FileUtils {
         }
     }
 
+    /**
+     * 스크래핑한 게시글의 가장 최신 날짜로 resources/date.txt 파일을 업데이트 함
+     * 파일이 존재하지 않을 경우 새롭게 생성함
+     */
     public static boolean updateDate(String date) {
         try {
             OpenOption[] options = new OpenOption[] {
@@ -49,6 +57,10 @@ public class FileUtils {
     }
 
     public static Map<String, List<Integer>> getDomain() {
+        /**
+         * resources/domain.properties 파일에서 도메인-코드 매핑 정보를 읽어 옴
+         * 해당 파일이 존재하지 않을 경우 도메인 생성에 실패하여 빈 맵을 반환
+         */
         try (BufferedReader reader = Files.newBufferedReader(DOMAIN_FILE)) {
             Properties properties = new Properties();
             properties.load(reader);
@@ -67,6 +79,12 @@ public class FileUtils {
         }
     }
 
+    /**
+     * resources/.env 파일에서 환경변수 정보를 읽어옴.
+     * 키-값 쌍으로 이루어져 있기 때문에 프로퍼티 객체로 반환하여 활용함
+     * 해당 파일이 존재하지 않을 경우 빈 프로퍼티 객체가 반환되며, 이 경우 메일 전송 준비 과정에서 에러가 발생할 것임
+     * (메일 전송 준비 과정에서 발생한 에러는 아무도 처리하지 않기 떄문에 프로그램 다운으로 이어짐)
+     */
     public static Properties getEnv() {
         Properties environment = new Properties();
         try (BufferedReader reader = Files.newBufferedReader(ENV_FILE)) {
