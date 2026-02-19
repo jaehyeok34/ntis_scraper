@@ -16,7 +16,7 @@ public class FileUtils {
     private static final Path RESOURCES_DIR = Path.of("./resources");
     private static final Path DATE_FILE = RESOURCES_DIR.resolve("date.txt");
     private static final Path DOMAIN_FILE = RESOURCES_DIR.resolve("domain.properties");
-    private static final Path ENV_FILE = RESOURCES_DIR.resolve(".env");
+    private static final Path ENV_FILE = RESOURCES_DIR.resolve("env");
     private static final Path LOGO_FILE = RESOURCES_DIR.resolve("logo.png");
     
     /**
